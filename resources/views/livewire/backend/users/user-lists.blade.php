@@ -1,4 +1,4 @@
-@section('page','Üye İşlemleri')
+<x-breadcrumb page="Üye İşlemleri"/>
 
 <div class="container-fluid">
 
@@ -14,7 +14,6 @@
         @endif--}}
 
     <div class="row">
-
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -22,7 +21,6 @@
                     <div class="d-flex justify-content-end">
                         <button wire:click.prevent="create" class="btn btn-outline-primary btn-sm ">Yeni Ekle</button>
                     </div>
-
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -35,12 +33,9 @@
                         </tr>
                         </thead>
                         <tbody>
-
-
-                        @foreach($users as $user)
-
+                        @foreach($users as $key=>$user)
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td>{{ $key +1 }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td class="text-center">
@@ -50,20 +45,15 @@
                                        class="btn btn-outline-danger btn-xs">Sil</a>
                                 </td>
                             </tr>
-
                         @endforeach
                         </tbody>
                     </table>
                 </div>
-
                 <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-right">
-                        {{ $users->links() }}
-                    </ul>
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
-
     </div>
     @include('livewire.backend.users.user-create')
     @include('livewire.backend.users.user-edit')

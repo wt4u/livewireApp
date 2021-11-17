@@ -2,17 +2,16 @@
 
 namespace App\Http\Livewire\Backend\Users;
 
+use App\Http\Livewire\AdminComponent;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Livewire\Component;
 
-class UserLists extends Component
+
+class UserLists extends AdminComponent
 {
     public $state = [];
     public $user;
     public $userIdRemoved = null;
-
 
     public function create()
     {
@@ -30,6 +29,7 @@ class UserLists extends Component
         ])->validate();
 
         $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['role_id'] = 3;
 
         User::create($validatedData);
 
@@ -85,8 +85,6 @@ class UserLists extends Component
     {
         $users = User::paginate(7);
 
-        return view('livewire.backend.users.user-lists', [
-            'users' => $users,
-        ]);
+        return view('livewire.backend.users.user-lists',compact('users'));
     }
 }

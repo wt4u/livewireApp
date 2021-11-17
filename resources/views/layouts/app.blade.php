@@ -20,7 +20,7 @@
     @include('layouts.partials.sidebar')
     <div class="content-wrapper">
 
-        @include('layouts.partials.content_header')
+{{--        @include('layouts.partials.content_header')--}}
 
         <section class="content">
 
